@@ -1,0 +1,20 @@
+<!-- navbar View -->
+<nav class="navbar sticky-top navbar">
+  <a class="navbar-brand d-none d-sm-block">{{ vm.title }}</a>
+  <div class="my-2 my-sm-0 mr-2">
+    <div class="navbar__user-dropdown">
+      <button class="btn navbar__user-dropdown-btn">
+        <i class="material-icons navbar__user-avatar"> account_circle </i>
+        <span class="ml-1">{{ vm.user }}</span>
+      </button>
+      <div class="navbar__user-dropdown-content">
+        <ul class="nav flex-column">
+          <!-- <li><a href="javascript:void(0)">My Profile</a></li> -->
+          <li>
+            <a ng-click="vm.logout()" href="javascript:void(0)">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

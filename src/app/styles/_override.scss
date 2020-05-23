@@ -1,0 +1,60 @@
+@import '../../../node_modules/bootstrap/scss/variables';
+@import './colors';
+@import './range';
+
+$custom-radius: 0.5rem;
+$font-family-sans-serif: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+$body-bg: $body-bg-color;
+$card-border-width: 0;
+$card-border-radius: 0.5rem;
+$breadcrumb-border-radius: $custom-radius;
+$breadcrumb-bg: $white;
+$tooltip-margin: 0 1.5em;
+
+.card {
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.05) !important;
+}
+
+.angularjs-datetime-picker {
+  border: 0;
+  border-radius: $custom-radius;
+  box-shadow: 0 0 50px 0 $deep-shdadow;
+
+  .adp-month {
+    background-color: transparent;
+    border-bottom: $divider;
+  }
+
+  .selected {
+    background: $primary !important;
+    border-radius: $custom-radius;
+    color: $white;
+  }
+
+  .adp-days {
+    @include range();
+  }
+}
+
+.highcharts-contextmenu {
+  .highcharts-menu {
+    border: 0 !important;
+    border-radius: $custom-radius;
+    box-shadow: 0 0 50px 0 $deep-shdadow !important;
+
+    &-item {
+      &:hover {
+        background-color: $primary !important;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.modal {
+  padding-top: 2em;
+
+  .modal-dialog {
+    margin-top: 2em;
+  }
+}

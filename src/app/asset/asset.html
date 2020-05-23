@@ -1,0 +1,227 @@
+<!-- Alerts View -->
+<navbar title="{{ vm.assetId }}"></navbar>
+<div class="asset container-fluid px-4 py-3">
+  <section class="mt-3 mb-4">
+    <breadcrumb
+      items="vm.breadcrumbItems"
+      current="{{ vm.assetId }}"
+    ></breadcrumb>
+  </section>
+  <div
+    class="d-flex justify-content-center align-items-center asset__loader"
+    ng-if="vm.loader"
+  >
+    <spinner></spinner>
+  </div>
+  <div class="row" ng-hide="vm.loader">
+    <div class="col">
+      <div class="row mb-4">
+        <div class="col-sm-12 col-md-4">
+          <div class="card">
+            <div class="row no-gutters">
+              <div class="col-md-4 pt-3 pl-3 ">
+                <i
+                  class="fa fa-heartbeat fa-5x {{
+                    vm.health.currentStatusColor
+                  }}"
+                ></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body pl-0">
+                  <h1 class="huge text-right">{{ vm.health.dailyOnTime }}</h1>
+                  <div class="text-right">
+                    Status:
+                    <strong>{{ vm.health.currentStatus }}</strong> | Today(in
+                    hrs.)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="card bg-success text-white">
+            <div class="row no-gutters">
+              <div class="col-md-4 pt-3 pl-3 ">
+                <i class="fa fa-heartbeat fa-5x"></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h1 class="huge text-right">{{ vm.health.monthlyOnTime }}</h1>
+                  <div class="text-right">
+                    Current month(in days)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="card bg-secondary text-white">
+            <div class="row no-gutters">
+              <div class="col-md-4 pt-3 pl-3 ">
+                <i class="fa fa-heartbeat fa-5x"></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h1 class="huge text-right">
+                    {{ vm.health.yearlyOnTimeInHours }}
+                  </h1>
+                  <div class="text-right">
+                    Current year(in days)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-3 mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            IO Controls
+          </h5>
+          <div class="row">
+            <div class="col" ng-repeat="io in vm.ioControls">
+              <button
+                type="button"
+                ng-click="vm.openIoModal(io)"
+                class="btn btn-primary btn-lg"
+              >
+                {{ io.name }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4>Current Tag Values</h4>
+      <div class="row">
+        <div
+          class="col-sm-12 col-md-3"
+          ng-repeat="parameter in vm.parametersGauge"
+        >
+          <div class="card my-3">
+            <span class="card-img pt-3 asset__gauge">
+              <!-- Default switch -->
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="{{parameter.tagType}}"  ng-model=parameter.toggle  ng-click="vm.emailAlerts(parameter)">
+                    <label class="custom-control-label" for="{{parameter.tagType}}"></label>
+                  </div>
+              <!-- size="{{ vm.gaugewidth }}" -->
+              <ng-gauge
+                type="semi"
+                thick="{{ vm.gaugeThickness }}"
+                value="parameter.value"
+                cap="butt"
+                foreground-color="#01b8a9"
+                background-color="#EEE"
+                label="{{ parameter.uom }}"
+                min="parameter.low"
+                max="parameter.high"
+              >
+              </ng-gauge>
+            </span>
+            <div class="card-body asset__gauge-card">
+              <!-- <p class="card-text">
+                Last Update:
+                <strong class="text-body">{{
+                  parameter.timestamp | date: 'yyyy-MM-dd HH:mm:ss'
+                }}</strong>
+              </p> -->
+              <p class="card-text">
+                <small class="text-muted">Last updated on</small>
+                <strong class="text-body">{{
+                  parameter.timestamp | date: 'yyyy-MM-dd HH:mm:ss'
+                }}</strong>
+              </p>
+
+              <button
+                type="button"
+                ng-click="vm.showHistory(parameter)"
+                class="btn btn-primary"
+              >
+                {{ parameter.tagType }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3 mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Current Alarm & Status Info
+          </h5>
+          <input
+            type="text"
+            ng-model="vm.search"
+            ng-disabled="vm.loader"
+            class="form-control my-3"
+            placeholder="Search"
+          />
+          <div class="table-responsive">
+            <table class="table table-hover incosa__table">
+              <thead>
+                <tr>
+                  <th ng-click="vm.sort('tagType')">
+                    Tag Name
+                    <span
+                      class="glyphicon sort-icon"
+                      ng-show="vm.sortKey=='tagType'"
+                      ng-class="{'glyphicon-chevron-up':vm.reverse,'glyphicon-chevron-down':!vm.reverse}"
+                    ></span>
+                  </th>
+                  <th>Value</th>
+                  <th>Last Update</th>
+                  <th>Email Alerts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  role="button"
+                  class="incosa__table-row incosa__table-row--clickable"
+                  dir-paginate="parameter in vm.statusTags | filter:vm.search | itemsPerPage:10 "
+                  pagination-id="alarm"
+                >
+                  <td ng-click="vm.showHistory(parameter)">{{ parameter.tagType }}</td>
+                  <td ng-click="vm.showHistory(parameter)" >{{ parameter.value }}</td>
+                  <td ng-click="vm.showHistory(parameter)" >
+                    {{ parameter.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}
+                  </td>
+                  <td>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="{{parameter.tagType}}"  ng-model=parameter.toggle  ng-click="vm.emailAlerts(parameter)">
+                    <label class="custom-control-label" for="{{parameter.tagType}}"></label>
+                  </div>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+            <dir-pagination-controls
+              pagination-id="alarm"
+              max-size="10"
+              direction-links="true"
+              boundary-links="true"
+            >
+            </dir-pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="io-modal.html">
+  <div class="modal-header">
+      <h5 class="modal-title" id="modal-title">{{vm.modalTitle}}</h5>
+      <spinner ng-if="vm.loader"></spinner>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <p ng-if="!vm.toggled">Are you sure you want to toggle <strong>GPIO:{{ vm.io.name }}</strong>?'</p>
+    <p ng-if="vm.toggled">Switched on <strong>GPIO:{{ vm.io.name }}</strong></p>
+  </div>
+  <div class="modal-footer">
+      <button type="button" ng-disabled="vm.loader" class="btn bg-light" ng-click="vm.cancel()">{{ vm.toggled ? 'Okay' : 'No' }}</button>
+      <button type="button" ng-if="!vm.toggled" ng-disabled="vm.loader" class="btn btn-primary"  ng-click="vm.ok()">Yes</button>
+  </div>
+</script>

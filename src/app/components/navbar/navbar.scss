@@ -1,0 +1,71 @@
+@import '../../styles/colors';
+
+.navbar {
+  background-color: $white;
+  box-shadow: 0 0 40px 0 $light-shadow;
+  height: 75px;
+
+  &__user-dropdown {
+    display: inline-block;
+    position: relative;
+
+    &-btn {
+      align-items: center !important;
+      color: $link;
+      display: flex !important;
+
+      .navbar__user-avatar {
+        font-size: 36px !important;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(lighten($primary, 60), 0.5);
+      border-radius: 24px;
+      transition: all 0.3s;
+
+      .navbar__user-dropdown-content {
+        display: block;
+      }
+    }
+
+    &-content {
+      animation: fadeInDown 0.5s;
+      background-color: $white;
+      border-radius: 8px;
+      box-shadow: 0 0 50px 0 $deep-shdadow;
+      display: none;
+      left: -65px;
+      margin-top: 2px;
+      min-width: 175px;
+      overflow: hidden;
+      position: absolute;
+      z-index: 2;
+
+      a {
+        color: $link;
+        display: block;
+        padding: 12px 16px;
+        text-decoration: none;
+        transition: 0.5;
+
+        &:hover {
+          background-color: $link-light;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

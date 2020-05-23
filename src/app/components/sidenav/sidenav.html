@@ -1,0 +1,62 @@
+<!-- Sidenav View -->
+<div class="sidenav" id="sidenav">
+  <section
+    class="sidenav__header py-2"
+    ng-class="{'sidenav__header--collapsed':$ctrl.collapsed, 'pl-3':!$ctrl.collapsed}"
+  >
+    <!-- <img
+      ng-hide="$ctrl.collapsed"
+      class="sidenav__header--logo"
+      src="../../assets/logo.png"
+    /> -->
+    <a
+      ng-hide="$ctrl.collapsed"
+      href="#!/dashboard"
+      class="navbar-brand text-light"
+      >Incosa Solutions</a
+    >
+    <button
+      class="btn mr-1 mt-1 sidenav__header--button"
+      type="button"
+      ng-click="$ctrl.toggleMenu()"
+    >
+      <i class="material-icons">menu</i>
+    </button>
+  </section>
+  <!-- Main nav -->
+  <ul class="nav flex-column sidenav__nav mt-4" ng-hide="$ctrl.collapsed">
+    <li ng-repeat="item in $ctrl.navItems" class="nav-item">
+      <a
+        class="nav-link sidenav__nav-item"
+        href="#!/{{ item.link }}"
+        ng-class="{active:  $ctrl.$route.current.activetab ===  item.link  }"
+        >{{ item.title }}
+      </a>
+    </li>
+  </ul>
+  <!-- Collpased menu -->
+  <ul
+    class="nav flex-column mt-2 sidenav--collapsed-list"
+    ng-if="$ctrl.collapsed"
+  >
+    <li
+      tooltip-placement="right"
+      uib-tooltip="{{ item.title }}"
+      ng-repeat="item in $ctrl.navItems"
+      class="nav-item mx-auto my-2 pr-1 sidenav--collapsed-list-item"
+    >
+      <h2
+        ng-class="{'active':  $ctrl.$route.current.activetab ===  item.link  }"
+      >
+        <a href="#!/{{ item.link }}" title="{{ item.title }}">
+          <span class="badge badge-primary pt-2 rounded-circle sidenav--collapsed__item-badge">
+            <!-- {{ item.title.substr(0, 1) }} -->
+            <i class="material-icons">
+              {{ item.icon }}
+            </i>
+          </span>
+        </a>
+      </h2>
+    </li>
+  </ul>
+</div>

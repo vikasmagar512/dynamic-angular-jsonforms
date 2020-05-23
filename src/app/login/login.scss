@@ -1,0 +1,28 @@
+@import '../styles/colors';
+
+$img: './../assets/bg-light.jpg';
+//Image source: https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiG_d-zp4fhAhXW6XMBHdWyAiEQjRx6BAgBEAU&url=https%3A%2F%2Fanalyticstraining.com%2Fbuild-iot-on-blockchain%2F&psig=AOvVaw3Fk0PwBqSddiKD0fNddqby&ust=1552846414157403
+.login {
+  background: url($img) no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+
+  &__container {
+    max-width: 440px;
+
+    .invalid-feedback {
+      display: block;
+    }
+  }
+
+  &__card {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  &__input {
+    &:focus {
+      border-color: rgba($secondary, 0.25);
+      box-shadow: 0 0 0 0.2rem rgba($secondary, 0.25);
+    }
+  }
+}

@@ -1,0 +1,108 @@
+<!-- Alerts View -->
+<navbar title="Alerts"></navbar>
+<div class="alert container-fluid px-4 py-3">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card mt-3 mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Recent Alerts
+            <spinner ng-if="vm.loader"></spinner>
+          </h5>
+          <input
+            type="text"
+            ng-model="vm.search"
+            ng-disabled="vm.loader"
+            class="form-control my-3"
+            placeholder="Search"
+          />
+          <div class="table-responsive" ng-if="vm.alertList.length">
+            <table class="table table-hover incosa__table">
+              <thead>
+                <tr>
+                  <th scope="col">Tag Name</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Last Update</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  role="button"
+                  ng-click="vm.showHistory(alert)"
+                  class="incosa__table-row incosa__table-row--clickable"
+                  dir-paginate="alert in vm.alertList | filter:vm.search | orderBy:'-date' |itemsPerPage:20 "
+                  pagination-id="alert"
+                >
+                  <td>{{ alert.tagName }}</td>
+                  <td>{{ alert.statusLevel }}</td>
+                  <td>{{ alert.date | date: 'dd-MM-yy HH:mm' }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <dir-pagination-controls
+              pagination-id="alert"
+              max-size="25"
+              direction-links="true"
+              boundary-links="true"
+            >
+            </dir-pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" ng-if="vm.tagSnapshotList.length>0">
+      <br>
+      <br>
+      <div class="row">
+<!--        <div class="col-sm-12">-->
+<!--          <div class="card mt-3 mb-4">-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Trend</h5>-->
+<!--              <div-->
+<!--                ng-hide="vm.loader"-->
+<!--                id="alertHistory"-->
+<!--                class="incosa-animatable alert__chart"-->
+<!--              ></div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Snapshot Values</h5>
+              <div
+                class="incosa-animatable table-responsive"
+                ng-hide="vm.loader"
+              >
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Tag Name</th>
+                      <th scope="col">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      dir-paginate="tag in vm.tagSnapshotList | itemsPerPage:17 "
+                      pagination-id="alertTagSnapshot"
+                    >
+                      <td>{{ tag.tagName }}</td>
+                      <td>{{ tag.value }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <dir-pagination-controls
+                  pagination-id="alertTagSnapshot"
+                  max-size="17"
+                  direction-links="true"
+                  boundary-links="true"
+                >
+                </dir-pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+@import '../styles/colors';
+
+.asset {
+  h4 {
+    color: $heading;
+  }
+
+  &__loader {
+    min-height: calc(100vh - 110px);
+  }
+
+  &__gauge {
+    text-align: center;
+  }
+
+  &__gauge-card {
+    z-index: 1;
+  }
+}

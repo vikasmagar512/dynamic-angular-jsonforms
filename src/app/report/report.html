@@ -1,0 +1,120 @@
+<!-- Report View -->
+<navbar title="Report"></navbar>
+<div class="report container-fluid px-4 py-3">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card mt-3 mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Trend Analysis Selection
+            <spinner ng-if="vm.loader"></spinner>
+          </h5>
+          <div class="form-group row">
+            <div class="form-group col">
+              <label for="assets">Assets</label>
+              <div
+                class="report__multi-select"
+                ng-dropdown-multiselect=""
+                options="vm.assetList"
+                selected-model="vm.selectedAssetList"
+                extra-settings="vm.listSettings"
+                onSelectionChanged="vm.onAssetSelect(item)"
+              ></div>
+            </div>
+            <div class="form-group col">
+              <label for="tags">Tags</label>
+              <div
+                class="report__multi-select"
+                ng-dropdown-multiselect=""
+                options="vm.tagList"
+                selected-model="vm.selectedTagList"
+                extra-settings="vm.listSettings"
+              ></div>
+            </div>
+            <div class="form-group col">
+              <label for="startTime">Start time</label>
+              <div class="input-group date">
+                <input
+                  type="text"
+                  class="form-control report__datetime-picker"
+                  placeholder="MM/DD/YYYY HH:MM"
+                  ng-model="start"
+                  datetime-picker
+                  hour="23"
+                  minute="59"
+                  ng-disabled="vm.loader"
+                />
+              </div>
+            </div>
+            <div class="form-group col">
+              <label for="startTime">End time</label>
+              <div class="input-group date">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="MM/DD/YYYY HH:MM"
+                  ng-model="end"
+                  datetime-picker
+                  hour="23"
+                  minute="59"
+                  ng-disabled="vm.loader"
+                />
+              </div>
+            </div>
+            <div class="col align-self-center mt-3">
+              <button
+                type="button"
+                ng-disabled="vm.loader"
+                ng-click="vm.getDataForTags(start,end)"
+                class="btn btn-primary"
+              >
+                Generate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card my-4" ng-show="vm.seriesOptions">
+        <div class="card-body">
+          <h5 class="card-title">Trend Analysis</h5>
+          <div id="reportChart" class="report__chart"></div>
+        </div>
+      </div>
+      <div class="card my-4" ng-if="vm.tableContent.length">
+        <div class="card-body">
+          <h5 class="card-title">Tag Wise Historical data</h5>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th
+                    ng-repeat="tableHeader in vm.tableHeaders track by $index"
+                  >
+                    {{ tableHeader }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  dir-paginate="tablerow in vm.tableContent | itemsPerPage:10 "
+                  pagination-id="reports"
+                >
+                  <td ng-repeat="cell in tablerow track by $index">
+                    {{ cell }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <dir-pagination-controls
+              pagination-id="reports"
+              max-size="10"
+              direction-links="true"
+              boundary-links="true"
+            >
+            </dir-pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

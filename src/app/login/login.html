@@ -1,0 +1,262 @@
+<section class="container-fluid">
+  <div class="row justify-content-center align-items-center login">
+    <div class="col login__container">
+      <div class="card shadow-lg login__card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-3">
+            Incosa Solutions
+          </h5>
+          <form name="login" ng-submit="vm.onSubmit(login.$valid)" novalidate ng-hide="vm.newUserForm">
+            <div class="form-group" >
+              <label for="userName" class="text-black-50">Username</label>
+              <input
+                type="text"
+                class="form-control login__input"
+                id="userName"
+                name="username"
+                aria-describedby="userNameHelp"
+                placeholder="Enter your username"
+                ng-model="vm.username"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="login.$submitted || login.username.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="login.username.$error.required"
+                >
+                  Please enter username
+                </div>
+              </div>
+            </div>
+            <div class="form-group" >
+              <label for="password" class="text-black-50">Password</label>
+              <input
+                type="password"
+                class="form-control login__input"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                ng-model="vm.password"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="login.$submitted || login.password.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="login.password.$error.required"
+                >
+                  Please enter password
+                </div>
+              </div>
+              <div class="invalid-feedback mt-3 mb-1 text-center">
+                <!-- {{ vm.error }} -->
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button
+                type="submit"
+                ng-disabled="login.$invalid"
+                class="btn btn-secondary mt-1"
+                ng-if="!vm.loader"
+              >
+                Login
+              </button>
+              &emsp;
+              <button
+                ng-click="vm.userRegisForm(true)"
+                ng-disabled="!login.$invalid"
+                class="btn btn-secondary mt-1"
+                ng-if="!vm.loader"
+              >
+                Sign up
+              </button>
+
+              <spinner ng-show="vm.loader" secondary-color="true"></spinner>
+            </div>
+        <!-- signup form begins -->
+          </form>
+          <form name="signup" ng-submit="vm.onSignSubmit(signup.$valid)" novalidate ng-show="vm.newUserForm">
+            <div class="form-group" >
+              <label for="newuserName" class="text-black-50">Username</label>
+              <input
+                type="text"
+                class="form-control login__input"
+                id="newuserName"
+                name="newuserName"
+                aria-describedby="newuserNameHelp"
+                placeholder="Enter your username"
+                ng-model="vm.newusername"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="signup.$submitted || signup.username.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="signup.newusername.$error.required"
+                >
+                  Please enter username
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" >
+              <label for="neworganization" class="text-black-50">Organization</label>
+              <input
+                type="text"
+                class="form-control email__input"
+                id="neworganization"
+                name="neworganization"
+                aria-describedby="neworganization"
+                placeholder="Enter your organization"
+                ng-model="vm.neworganization"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="signup.$submitted || signup.org.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="signup.org.$error.required"
+                >
+                  Please enter Organization
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" >
+              <label for="newemail" class="text-black-50">Email</label>
+              <input
+                type="email"
+                class="form-control input"
+                id="newemail"
+                name="newemail"
+                aria-describedby="newemailHelp"
+                placeholder="Enter your email"
+                ng-model="vm.newemail"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="signup.$submitted || signup.email.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="signup.email.$error.required"
+                >
+                  Please enter email
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" >
+              <label for="newphone" class="text-black-50">Phone</label>
+              <input
+                type="text" placeholder="+447772334782"
+                class="form-control input"
+                id="newphone"
+                name="newphone"
+                aria-describedby="newphoneHelp"
+                ng-model="vm.newphone"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="signup.$submitted || signup.phone.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="signup.phone.$error.required"
+                >
+                  Please enter Phone
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" >
+              <label for="newrole" class="text-black-50">Role</label>
+              <select
+              class="form-control input"
+              id="newrole"
+              name="newrole"
+          
+              ng-options="o.name for o in vm.options"
+              ng-model="vm.newrole"
+              ng-disabled="vm.loader"
+              required
+              ></select>
+            </div>
+
+
+            <div class="form-group" >
+              <label for="newpassword" class="text-black-50">Password</label>
+              <input
+                type="password"
+                class="form-control login__input"
+                id="newpassword"
+                name="newpassword"
+                placeholder="Enter your password"
+                ng-model="vm.newpassword"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="signup.$submitted || signup.password.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="signup.password.$error.required"
+                >
+                  Please enter password
+                </div>
+              </div>
+              <div class="invalid-feedback mt-3 mb-1 text-center">
+                {{ vm.error }}
+              </div>
+            </div>
+            <div class="form-group" >
+              <label for="newcpassword" class="text-black-50">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control login__input"
+                id="newcpassword"
+                name="newcpassword"
+                placeholder="Re-enter your password"
+                ng-model="vm.newcpassword"
+                ng-disabled="vm.loader"
+                required
+              />
+              <div ng-show="signup.$submitted || signup.cpassword.$touched">
+                <div
+                  class="invalid-feedback"
+                  ng-if="signup.cpassword.$error.required"
+                >
+                  Please re-enter password
+                </div>
+              </div>
+              <!-- <div class="invalid-feedback mt-3 mb-1 text-center">
+                {{ vm.error }}
+              </div> -->
+            </div>
+            <div class="d-flex justify-content-center" ng-show="vm.newUserForm">
+              <button
+                ng-click="vm.onSignUpSubmit(signup.$valid)"
+                ng-disabled="signup.$invalid"
+                class="btn btn-secondary mt-1"
+                ng-if="!vm.loader"
+              >
+                Submit
+              </button>
+              &emsp;
+              <button
+                ng-click="vm.userRegisForm(false)"
+                class="btn btn-secondary mt-1"
+                ng-if="!vm.loader"
+              >
+              Cancel
+              </button>
+
+              <spinner ng-show="vm.loader" secondary-color="true"></spinner>
+            </div>
+          </form>
+
+<!-- signup form ends -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+{
+  "scripts": [
+    "./node_modules/angular/angular.min.js",
+    "./node_modules/angular-route/angular-route.min.js",
+    "./node_modules/angular-touch/angular-touch.min.js",
+    "./node_modules/angular-animate/angular-animate.min.js",
+    "./node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
+    "./node_modules/angularjs-datetime-picker/angularjs-datetime-picker.min.js",
+    "./node_modules/angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js",
+    "./node_modules/angularjs-gauge/dist/angularjs-gauge.min.js",
+    "./node_modules/angular-utils-pagination/dirPagination.js",
+    "./node_modules/highcharts/highcharts.js",
+    "./node_modules/highcharts/modules/stock.js",
+    "./node_modules/highcharts/modules/exporting.js",
+    "./node_modules/highcharts/modules/export-data.js",
+    "./node_modules/jsonforms/dist/jsonforms.js",
+    "./src/app/**/*.js",
+    "!./src/app/**/*.spec.js"
+  ],
+  "styles": [
+    "./node_modules/angularjs-datetime-picker/angularjs-datetime-picker.css",
+    "./src/**/**/*.scss"
+  ],
+  "views": {
+    "src": "./src/*.html",
+    "app": "./src/app/**/*.html",
+    "utils": "./src/app/utils/*.html"
+  },
+  "assets": "./src/assets/**.*"
+}

@@ -1,0 +1,83 @@
+<!-- Dashboard View -->
+<navbar title="Dashboard"></navbar>
+<div class="dashboard container-fluid px-4 py-3">
+
+    <div class="row" >
+      <div class="col-sm-12">
+          <div class="panel-primary panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title"><strong>Dynamic forms</strong></h3>
+              </div>
+
+              <div class="panel-body jsf">
+                  <jsonforms schema="vm.schema" ui-schema="vm.uiSchema" data="vm.data"/>
+              </div>
+              <div class="panel-body jsf">
+                <jsonforms schema="vm.schema2" data="vm.data2"/>
+            </div>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col">       
+      <div class="card mt-3 mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Asset Details
+            <spinner ng-if="vm.loader"></spinner>
+          </h5>
+          <input
+            type="text"
+            ng-model="vm.assetSearch"
+            ng-disabled="vm.loader"
+            class="form-control my-3"
+            placeholder="Search"
+          />
+          <div class="table-responsive" ng-if="vm.sensorList.length">
+            <table class="table table-hover incosa__table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Serial</th>
+                  <th>Rated Voltage</th>
+                  <th>Rated Capacity</th>
+                  <th>RC Manufacturer</th>
+                  <th>RC Part No</th>
+                  <th>Hoist Count</th>
+                  <th>Controller Count</th>
+                  <th>State</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  role="button"
+                  ng-click="vm.sensorDisplay(sensor)"
+                  class="incosa__table-row incosa__table-row--clickable"
+                  dir-paginate="sensor in vm.sensorList | filter:vm.assetSearch | itemsPerPage:10 "
+                  pagination-id="assets"
+                >
+                  <td>{{ sensor.attributes.Name }}</td>
+                  <td>{{ sensor.attributes.SerialNo }}</td>
+                  <td>{{ sensor.attributes['Rated Voltage'] }}</td>
+                  <td>{{ sensor.attributes['Rated Capacity'] }}</td>
+                  <td>{{ sensor.attributes['Radio Control Manufacture'] }}</td>
+                  <td>{{ sensor.attributes['Radio Control Part Number'] }}</td>
+                  <td>{{ sensor.attributes['Number of Hoists'] }}</td>
+                  <td>{{ sensor.attributes['Number of Controllers'] }}</td>
+                  <td>ON</td>
+                </tr>
+              </tbody>
+            </table>
+            <dir-pagination-controls
+              pagination-id="assets"
+              max-size="10"
+              direction-links="true"
+              boundary-links="true"
+            >
+            </dir-pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

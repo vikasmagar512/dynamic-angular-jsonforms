@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700');
+@import './app/styles/theme';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+.incosa {
+  &-container {
+    margin-left: 260px;
+    transition: margin-left 0.5s;
+  }
+
+  &-container--full-screen {
+    margin-left: 75px;
+  }
+
+  &-animatable {
+    transition: all linear 0.5s;
+  }
+
+  &__table {
+    &-row--clickable {
+      cursor: pointer;
+    }
+
+    &-row.ng-move,
+    &-row.ng-enter,
+    &-row.ng-leave {
+      transition: all linear 0.5s;
+    }
+
+    &-row.ng-leave.ng-leave-active,
+    &-row.ng-move,
+    &-row.ng-enter {
+      opacity: 0;
+    }
+
+    &-row.ng-leave,
+    &-row.ng-move.ng-move-active,
+    &-row.ng-enter.ng-enter-active {
+      opacity: 1;
+    }
+  }
+
+  .modal.in {
+    opacity: 1 !important;
+  }
+
+  .fade.in {
+    opacity: 0.5;
+  }
+}
+
+.ng-hide {
+  opacity: 0;
+}
