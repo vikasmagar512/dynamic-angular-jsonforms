@@ -1,7 +1,7 @@
 <!-- Config View -->
 <navbar title="Config"></navbar>
 <div class="config container-fluid px-4 py-3">
-    <div class="row d-flex align-items-end">
+    <div class="row d-flex align-items-end card mb-4">
       <div class="col">
         <h5>Select json file</h5>
         <input type="file" on-read-file="showContent($fileContent)" />
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="row" >
+    <div class="row card " >
       <div class="col-sm-12" ng-if="content">
           <div class="panel-primary panel-default">
               <div class="panel-heading">
@@ -98,6 +98,6 @@
               </div>
           </div>
       </div>
-  </div>
+    </div>
 
 </div>
