@@ -1,0 +1,27 @@
+@import '../styles/colors';
+.jsf-horizontal-layout {
+  .row{
+    display: table;
+  }
+}
+h2.mb-0{
+  margin-top:0px;
+}
+
+.trigger {
+  position: relative;
+}
+  
+.trigger::after {
+	content: "\f107";
+	color: #333;
+  top: 4px;
+  
+	right: -5px;
+	position: absolute;
+    font-family: "FontAwesome"
+}
+
+.trigger[aria-expanded="true"]::after {
+	content: "\f106";
+}

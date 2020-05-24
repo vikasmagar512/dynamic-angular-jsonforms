@@ -33,6 +33,13 @@
           count: 4,
           disabled: false,
           icon: 'show_chart'
+        },
+        {
+          link: 'config',
+          title: 'Config',
+          count: 4,
+          disabled: false,
+          icon: 'show_chart'
         }
       ];
     };

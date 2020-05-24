@@ -44,6 +44,10 @@
             template: '<alerts></alerts>',
             activetab: 'alerts'
           })
+          .when('/config', {
+            template: '<config></config>',
+            activetab: 'config'
+          })
           .when('/report', {
             template: '<report></report>',
             activetab: 'report'
