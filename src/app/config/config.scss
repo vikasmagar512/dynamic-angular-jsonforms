@@ -25,3 +25,8 @@ h2.mb-0{
 .trigger[aria-expanded="true"]::after {
 	content: "\f106";
 }
+.custom-checkbox{
+  width: 12% !important;
+  margin: 0px !important;
+  height: 31px !important;
+}

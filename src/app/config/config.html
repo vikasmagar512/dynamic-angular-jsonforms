@@ -17,12 +17,127 @@
       <div class="col-sm-12" ng-if="content">
           <div class="panel-primary panel-default">
               <div class="panel-heading">
-                  <h3 class="panel-title"><strong>Dynamic forms</strong></h3>
+                  <h3 class="panel-title"><strong>Asset Information</strong></h3>
               </div>
 
-              <div class="panel-body jsf">
-                <jsonforms schema="vm.schema" ui-schema="vm.uiSchema" data="vm.data"/>
-              </div>
+              <div class="panel-body">
+                <form name="userForFirst" novalidate>
+                  <div >
+                    <div class="card">
+                      <div class="card-header">
+                        <h2 class="mb-0" >
+                          Basic Info
+                        </h2>
+                      </div>
+                  
+                      <div>
+                        <div class="card-body">
+                          <ng-form name="userFieldForm1">
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label>uri</label>
+                                <input type="string" class="form-control" name="uri" ng-model="vm.data.uri" required>
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label>Classification</label>
+                                <input type="string" class="form-control" name="classification" ng-model="vm.data.classification" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>parent</label>
+                                <input type="string" class="form-control" name="parent" ng-model="vm.data.parent" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>id</label>
+                                <input type="string" class="form-control" name="id" id="id" ng-model="vm.data.id" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Owner</label>
+                                <input type="string" class="form-control" name="owner" ng-model="vm.data.owner" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Customer</label>
+                                <input type="string" class="form-control" name="customer" ng-model="vm.data.customer" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Location</label>
+                                <input type="string" class="form-control" name="location" ng-model="vm.data.location" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>ComplexType</label>
+                                <input type="string" class="form-control" name="complexType" ng-model="vm.data.complexType" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Description</label>
+                                <input type="string" class="form-control" name="description" ng-model="vm.data.description" required>
+                              </div>
+            
+                            </div>
+                          </ng-form>
+                        </div>  
+                      </div> 
+                    </div> 
+                  </div> 
+                </form> 
+              </div> 
+
+              <div class="panel-body">
+                <form name="userForFirst" novalidate>
+                  <div >
+                    <div class="card">
+                      <div class="card-header">
+                        <h2 class="mb-0" >
+                          Attributes
+                        </h2>
+                      </div>
+                  
+                      <div>
+                        <div class="card-body">
+                          <ng-form name="userFieldForm1">
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label>Name</label>
+                                <input type="string" class="form-control" name="pinType" ng-model="vm.data.attributes.Name" required>
+                              </div>
+
+                              <div class="form-group col-md-4">
+                                <label>SerialNo</label>
+                                <input type="string" class="form-control" name="SerialNo" ng-model="vm.data.attributes.SerialNo" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Rated Voltage</label>
+                                <input type="string" class="form-control" name="RatedVoltage" ng-model="vm.data.attributes.RatedVoltage" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Rated Capacity</label>
+                                <input type="string" class="form-control" name="RatedCapacity" ng-model="vm.data.attributes.RatedCapacity" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Radio Control Manufacture</label>
+                                <input type="string" class="form-control" name="RadioControlManufacture" ng-model="vm.data.attributes.RadioControlManufacture" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Radio Control Part Number</label>
+                                <input type="number" class="form-control" name="RadioControlPartNumber" ng-model="vm.data.attributes.RadioControlPartNumber" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Number of Hoists</label>
+                                <input type="number" class="form-control" name="NumberofHoists" ng-model="vm.data.attributes.NumberofHoists" required>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label>Number of Controllers</label>
+                                <input type="number" class="form-control" name="NumberofControllers" ng-model="vm.data.attributes.NumberofControllers" required>
+                              </div>
+            
+                            </div>
+                          </ng-form>
+                        </div>  
+                      </div> 
+                    </div> 
+                  </div> 
+                </form> 
+              </div>  
+
               <div class="panel-body">
                 <form name="userFormTwo" novalidate>
                   <div class="accordion" id="accordionExample" ng-repeat="(user,value) in vm.data2">
@@ -53,22 +168,28 @@
                               </div>
                               <div class="form-group col-md-4">
                                 <label>tag</label>
-                                <input type="string" class="form-control" name="tag" ng-model="vm.data2[user].tag" required>
-                                <small class="text-muted">
+                                <div class="input-group">
+                                  <span class="input-group-addon">{{vm.data.id}}</span>
+                                  <!-- <input type="string" class="form-control" name="tag" ng-model="vm.data2[user].tag" ng-change="vm.tagChange(vm.data2[user].tag)" required> -->
+                                  <input type="string" class="form-control" name="tag" ng-model="vm.data2[user].tag" required>
+                                </div>
+                                <!-- <small class="text-muted">
                                   {{vm.data.id}} must be the prefix. Refrain from editing the prefix.
-                                </small>
+                                </small> -->
                               </div>
                               <div class="form-group col-md-4">
                                 <label>uom</label>
                                 <input type="string" class="form-control" name="uom" ng-model="vm.data2[user].uom" required>
                               </div>
                               <div class="form-group col-md-4">
-                                <label>binary</label>
-                                <input type="string" class="form-control" name="binary" ng-model="vm.data2[user].binary" required>
+                                <label>Binary </label>
+                                  <input type="checkbox" class="form-control custom-checkbox" ng-model="vm.data2[user].binary"
+                                        ng-true-value="'YES'" ng-false-value="'NO'">
+                               <br/>
                               </div>
                               <div class="form-group col-md-4">
                                 <label>multiplier</label>
-                                <input type="string" class="form-control" name="multiplier" ng-model="vm.data2[user].multiplier" required>
+                                <input type="number" class="form-control" name="multiplier" ng-model="vm.data2[user].multiplier" required>
                               </div>
                               <div class="form-group col-md-4">
                                 <label>Low</label>
@@ -78,6 +199,20 @@
                                 <label>High</label>
                                 <input type="number" class="form-control" name="high" ng-model="vm.data2[user].high" required>
                               </div>
+                              <div class="form-group col-md-4">
+                                <label>Decimal </label>
+                                  <input type="checkbox" class="form-control custom-checkbox" ng-model="vm.data2[user].decimal"
+                                        ng-true-value="'YES'" ng-false-value="'NO'">
+                               <br/>
+                              </div>
+                              <div class="form-group  col-md-4">
+                                <label for="exampleFormControlSelect1">Tile Type</label>
+                                <select class="form-control" ng-model="vm.data2[user].tileType" id="exampleFormControlSelect1" ng-model="vm.data2[user].decimal">
+                                  <option value="text">Text</option>
+                                  <option value="gauge">Gauge</option>
+                                </select>
+                              </div>
+
                               <div class="form-group col-md-4">
                                 <label>Index</label>
                                 <input type="number" class="form-control" name="index" ng-model="vm.data2[user].index" required>
