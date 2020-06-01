@@ -13,7 +13,6 @@
       'angularjs-datetime-picker',
       'angularjs-gauge',
       'angularUtils.directives.dirPagination',
-      'jsonforms',
       'ui.bootstrap',
     ])
     .config([

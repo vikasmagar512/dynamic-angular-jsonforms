@@ -16,8 +16,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "typings": "0.6.5",
-    "@ajsf/bootstrap4": "^0.1.4",
     "angular": "1.7.7",
     "angular-animate": "^1.7.7",
     "angular-route": "^1.7.7",
@@ -29,8 +27,7 @@
     "angularjs-gauge": "^2.2.0",
     "bootstrap": "^4.3.1",
     "gulp-cli": "^2.2.0",
-    "highcharts": "^7.0.3",
-    "jsonforms": "0.0.19"
+    "highcharts": "^7.0.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",

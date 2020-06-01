@@ -13,7 +13,6 @@
     "./node_modules/highcharts/modules/stock.js",
     "./node_modules/highcharts/modules/exporting.js",
     "./node_modules/highcharts/modules/export-data.js",
-    "./node_modules/jsonforms/dist/jsonforms.js",
     "./src/app/**/*.js",
     "!./src/app/**/*.spec.js"
   ],
