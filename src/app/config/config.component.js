@@ -1844,7 +1844,8 @@
           Object.keys(vm.data2).forEach(key=>{
             vm.data2[key] = {
               ...vm.data2[key],
-              tag: vm.data2[key].tag.slice(vm.data.id.length)
+              tag: vm.data2[key].tag.slice(vm.data.id.length), 
+              multiplier: vm.data2[key].multiplier!=='' ? parseInt(vm.data2[key].multiplier) : 1
             }
             debugger
           })
@@ -1856,6 +1857,13 @@
             vm.loader = false;
           },1000)
         };
+        
+        vm.tagChanged = function (user){
+          const newName = vm.data.id + vm.data2[user].tag
+          vm.data2[newName] = vm.data2[user]
+          delete vm.data2[user]
+          debugger
+        }
 
         function myFunction(e) {
           vm.loader = true;

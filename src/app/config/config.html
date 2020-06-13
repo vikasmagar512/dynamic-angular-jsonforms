@@ -185,7 +185,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon3">{{vm.data.id}}</span>
                             </div>
-                            <input type="string" class="form-control" name="tag" ng-model="vm.data2[user].tag" required>
+                            <input type="string" class="form-control" name="tag" ng-change="vm.tagChanged(user)" ng-model="vm.data2[user].tag" required>
                           </div>
                         </div>
                         <div class="form-group col-md-4">
