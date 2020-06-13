@@ -1864,6 +1864,9 @@
           delete vm.data2[user]
           debugger
         }
+        vm.delete = function (user){
+          delete vm.data2[user]
+        }
 
         function myFunction(e) {
           vm.loader = true;
